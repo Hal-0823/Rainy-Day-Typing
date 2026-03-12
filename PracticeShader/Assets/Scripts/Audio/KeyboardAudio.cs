@@ -9,16 +9,6 @@ public class KeyboardAudio : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
-    private void OnEnable()
-    {
-        TypingManager.OnTypeCorrect += PlayRandomKeySE;
-    }
-
-    private void OnDisable()
-    {
-        TypingManager.OnTypeCorrect -= PlayRandomKeySE;
-    }
-
     public void PlayRandomKeySE()
     {
         int randomIndex = Random.Range(0, seConfig.GetKeySECount());

@@ -11,12 +11,12 @@ public class BikeAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnBike += PlayBikeSE;
+        //GameManager.OnBike += PlayBikeSE;
     }
 
     private void OnDisable()
     {
-        GameManager.OnBike -= PlayBikeSE;
+        //GameManager.OnBike -= PlayBikeSE;
     }
 
     private void PlayBikeSE()

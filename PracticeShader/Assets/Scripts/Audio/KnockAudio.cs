@@ -10,12 +10,12 @@ public class KnockAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnKnock += PlayKnockSE;
+        //GameManager.OnKnock += PlayKnockSE;
     }
 
     private void OnDisable()
     {
-        GameManager.OnKnock -= PlayKnockSE;
+        //GameManager.OnKnock -= PlayKnockSE;
     }
 
     private void PlayKnockSE()

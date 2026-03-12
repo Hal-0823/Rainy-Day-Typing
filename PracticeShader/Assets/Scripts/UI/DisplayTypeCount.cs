@@ -8,12 +8,12 @@ public class DisplayTypeCount : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnTypeCountUpdated += UpdateTypeCountDisplay;
+        //GameManager.OnTypeCountUpdated += UpdateTypeCountDisplay;
     }
 
     private void OnDisable()
     {
-        GameManager.OnTypeCountUpdated -= UpdateTypeCountDisplay;
+        //GameManager.OnTypeCountUpdated -= UpdateTypeCountDisplay;
     }
 
     private void UpdateTypeCountDisplay(int typeCount)
