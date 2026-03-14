@@ -1,10 +1,12 @@
-namespace GameConfig
+using UnityEngine;
+
+[System.Serializable]
+public class GameConfig
 {
-    public enum KeySE
-    {
-        Mechanical,
-        Typewriter,
-        Light,
-        None
-    }
+    public int RainVolume = 10;
+    public int KeyboardVolume = 10;
+    public int BGMVolume = 10;
+
+    public KeyboardSE.Type SelectedKeyboardType = KeyboardSE.Type.Mechanical;
+    public Theme.Type SelectedTheme = Theme.Type.SettingSun;
 }

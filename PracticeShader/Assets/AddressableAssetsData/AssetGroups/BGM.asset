@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: BGM
   m_GUID: 121776407de2e494598ca24c695fac13
   m_SerializeEntries:
+  - m_GUID: 346406aadc29fda40a359fa0c7a1511e
+    m_Address: "\u5915\u66AE\u308C\u306B\u3072\u3068\u308A"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3c78a4acca7fc4243affdd30a9c83383
     m_Address: "\u591C\u95C7\u306B\u3001\u98A8\u306B\u7D1B\u308C\u3066"
     m_ReadOnly: 0
@@ -37,6 +42,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bdbeacbe6d34899449e904acc128f940
     m_Address: "\u79CB\u96E8\u3068\u5171\u306B_2"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc85d369ae5b52343bd256fe6cb2613f
+    m_Address: "\u904E\u304E\u53BB\u3063\u305F\u6642\u9593"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8d4ad398ba670b408f8cda55e90c6e5
+    m_Address: "\u6728\u6F0F\u308C\u65E5"
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

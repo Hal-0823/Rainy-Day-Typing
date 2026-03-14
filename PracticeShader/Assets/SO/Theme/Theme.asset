@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd91bb0172552694a920f4d2e83ba0c0, type: 3}
-  m_Name: '#2'
+  m_Script: {fileID: 11500000, guid: 1587df96d5a543f4fa5c3d09ec754ca8, type: 3}
+  m_Name: Theme
   m_EditorClassIdentifier: 
-  _path: "\u591C\u95C7\u306B\u3001\u98A8\u306B\u7D1B\u308C\u3066_2"
-  _title: "\u591C\u95C7\u306B\u3001\u98A8\u306B\u7D1B\u308C\u3066"
-  _composer: "\u84B2\u927E\u3055\u3061\u3053"
+  _settingSunSky: {fileID: 2100000, guid: cede08c9fc471e64884909cd4bbeaf59, type: 2}
+  _heavyOvercastSky: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}

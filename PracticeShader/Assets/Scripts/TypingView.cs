@@ -13,7 +13,7 @@ public class TypingView : MonoBehaviour
     [SerializeField] private Color typedColor = Color.gray;
     [SerializeField] private Color remainColor = Color.white;
 
-    [SerializeField] private KeyboardAudio _keyboardAudio;
+    [SerializeField] private AudioManager _audioManager;
 
     // 文字入力イベント
     private readonly Subject<char> _onInputCharSubject = new Subject<char>();
@@ -26,7 +26,7 @@ public class TypingView : MonoBehaviour
             foreach (char c in Input.inputString)
             {
                 _onInputCharSubject.OnNext(c);
-                _keyboardAudio.PlayRandomKeySE();
+                _audioManager.KeyboardAudioController.PlayRandomKeySE();
             }
         }
     }

@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using R3;
+using System;
 
 public class MusicView : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class MusicView : MonoBehaviour
 
     private Subject<Unit> _onMusicEndSubject = new Subject<Unit>();
     public Observable<Unit> OnMusicEnd => _onMusicEndSubject;
+
+    // 通知処理のキャンセル用
+    private CancellationTokenSource _notificationCts;
 
     /// <summary>
     /// 音楽をフェードインして再生する
@@ -50,11 +55,29 @@ public class MusicView : MonoBehaviour
     /// <returns></returns>
     public async UniTask AnimateNotification(string musicTitle, string composer, float fadeDuration, float displayDuration)
     {
-        _musicTitleText.text = musicTitle;
-        _composerText.text = "by " + composer;
-        _musicInfoCanvasGroup.alpha = 0;
-        await _musicInfoCanvasGroup.DOFade(1, fadeDuration).AsyncWaitForCompletion();
-        await UniTask.Delay((int)(displayDuration * 1000));
-        await _musicInfoCanvasGroup.DOFade(0, fadeDuration).AsyncWaitForCompletion();
+        if (_notificationCts != null)
+        {
+            _notificationCts.Cancel();
+            _notificationCts.Dispose();
+        }
+
+        _notificationCts = new CancellationTokenSource();
+        var token = _notificationCts.Token;
+
+        _musicInfoCanvasGroup.DOKill();
+
+        try
+        {
+            _musicTitleText.text = musicTitle;
+            _composerText.text = "by " + composer;
+            _musicInfoCanvasGroup.alpha = 0;
+            await _musicInfoCanvasGroup.DOFade(1, fadeDuration).ToUniTask(cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(displayDuration), cancellationToken: token);
+            await _musicInfoCanvasGroup.DOFade(0, fadeDuration).ToUniTask(cancellationToken: token);
+        }
+        catch (OperationCanceledException)
+        {
+            
+        }
     }
 }

@@ -10,6 +10,11 @@ public class TypingSceneDirector : MonoBehaviour
     [SerializeField] private MusicView _musicView;
     [SerializeField] private List<MusicData> _musicDataList;
 
+    [SerializeField] private SettingsView _settingsView;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private RenderVolumeController _renderVolumeController;
+    [SerializeField] private ThemeController _themeController;
+
     private async void Start()
     {
         var questLoader = new QuestLoader();
@@ -20,5 +25,8 @@ public class TypingSceneDirector : MonoBehaviour
 
         var musicModel = new MusicModel(_musicDataList);
         var musicPresenter = new MusicPresenter(musicModel, _musicView);
+
+        var settingsModel = new SettingsModel();
+        var settingsPresenter = new SettingsPresenter(settingsModel, _settingsView, _audioManager, _renderVolumeController, _themeController);
     }
 }

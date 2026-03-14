@@ -1,12 +1,19 @@
 using UnityEngine;
-using GameConfig;
 
 /// <summary>
-/// 効果音設定を管理するScriptableObject
+/// キーボードの打鍵音を管理するクラス
 /// </summary>
-[CreateAssetMenu(fileName = "SEConfig", menuName = "ScriptableObjects/SEConfig", order = 1)]
-public class SEConfig : ScriptableObject
+[CreateAssetMenu(fileName = "KeyboardSE", menuName = "SE/KeyboardSE", order = 1)]
+public class KeyboardSE : ScriptableObject
 {
+    public enum Type
+    {
+        Mechanical,
+        Typewriter,
+        Light,
+        None
+    }
+
     [SerializeField]
     private AudioClip[] mechanicalSE;
 
@@ -16,17 +23,22 @@ public class SEConfig : ScriptableObject
     [SerializeField]
     private AudioClip[] lightSE;
 
-    public KeySE SelectedKeySE;
+    private Type _selectedType = Type.Mechanical;
+    
+    public void SetSelectedType(Type type)
+    {
+        _selectedType = type;
+    }
 
     public int GetKeySECount()
     {
-        switch (SelectedKeySE)
+        switch (_selectedType)
         {
-            case KeySE.Mechanical:
+            case Type.Mechanical:
                 return mechanicalSE.Length;
-            case KeySE.Typewriter:
+            case Type.Typewriter:
                 return typewriterSE.Length;
-            case KeySE.Light:
+            case Type.Light:
                 return lightSE.Length;
             default:
                 return 0;
@@ -35,13 +47,13 @@ public class SEConfig : ScriptableObject
 
     public AudioClip GetAudioClip(int index)
     {
-        switch (SelectedKeySE)
+        switch (_selectedType)
         {
-            case KeySE.Mechanical:
+            case Type.Mechanical:
                 return mechanicalSE[index];
-            case KeySE.Typewriter:
+            case Type.Typewriter:
                 return typewriterSE[index];
-            case KeySE.Light:
+            case Type.Light:
                 return lightSE[index];
             default:
                 return null;
