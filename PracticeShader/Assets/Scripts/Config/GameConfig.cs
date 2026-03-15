@@ -8,5 +8,5 @@ public class GameConfig
     public int BGMVolume = 10;
 
     public KeyboardSE.Type SelectedKeyboardType = KeyboardSE.Type.Mechanical;
-    public Theme.Type SelectedTheme = Theme.Type.SettingSun;
+    public ThemeCatalog.Type SelectedTheme = (ThemeCatalog.Type)0;
 }

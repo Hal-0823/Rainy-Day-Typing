@@ -10,7 +10,7 @@ public class SettingsModel
     public ReactiveProperty<int> KeyboardVolume { get; } = new();
     public ReactiveProperty<int> BGMVolume { get; } = new();
     public ReactiveProperty<KeyboardSE.Type> SelectedKeyboardType { get; } = new();
-    public ReactiveProperty<Theme.Type> SelectedTheme { get; } = new();
+    public ReactiveProperty<ThemeCatalog.Type> SelectedTheme { get; } = new();
 
     public ReactiveProperty<bool> IsMenuOpen { get; } = new();
 
@@ -63,16 +63,23 @@ public class SettingsModel
 
     /// <summary>
     /// メニューの開閉をトグルするリクエスト
+    /// メニューが閉じられたときにはセーブを呼び出す
     /// </summary>
     public void RequestToggleMenu()
     {
         IsMenuOpen.Value = !IsMenuOpen.Value;
+
+        if (!IsMenuOpen.Value) Save();
     }
 
+    /// <summary>
+    /// テーマを変更するリクエスト
+    /// </summary>
+    /// <param name="direction"></param>
     public void RequestShiftTheme(int direction)
     {
-        int themeCount = Enum.GetValues(typeof(Theme.Type)).Length;
+        int themeCount = Enum.GetValues(typeof(ThemeCatalog.Type)).Length;
         int newThemeIndex = ((int)SelectedTheme.Value + direction + themeCount) % themeCount;
-        SelectedTheme.Value = (Theme.Type)newThemeIndex;
+        SelectedTheme.Value = (ThemeCatalog.Type)newThemeIndex;
     }
 }

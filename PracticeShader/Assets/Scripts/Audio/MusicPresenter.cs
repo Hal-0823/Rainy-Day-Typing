@@ -1,11 +1,13 @@
-using UnityEngine;
+using System;
 using R3;
 using Cysharp.Threading.Tasks;
 
-public class MusicPresenter
+public class MusicPresenter : IDisposable
 {
     private readonly MusicModel _model;
     private readonly MusicView _view;
+
+    private readonly CompositeDisposable _disposables = new();
 
     public MusicPresenter(MusicModel model, MusicView view)
     {
@@ -27,10 +29,15 @@ public class MusicPresenter
                 await _view.PlayWithFade(audioClip, 1f);
                 _view.AnimateNotification(data.Title, data.Composer, 1.5f, 5f).Forget();
             })
-            .AddTo(_view);
+            .AddTo(_disposables);
 
         _view.OnMusicEnd
             .Subscribe(_ => _model.RequestNextMusic())
-            .AddTo(_view);
+            .AddTo(_disposables);
+    }
+
+    public void Dispose()
+    {
+        _disposables.Dispose();
     }
 }

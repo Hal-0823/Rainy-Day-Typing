@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: dfb51b9849b04854c8fcc897ba68367b, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: fa3c82503cbb80145b21e4c98d95fe88, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 94fc6e5f0e7e61349b9db7f3ca604c5b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -456,7 +456,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2953953254353773209, guid: 13cb5daf98a2c5049b4da7be2bde9ea6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 26ceadbe3c5160a4f91210adfdbec34c, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 26ceadbe3c5160a4f91210adfdbec34c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1036,11 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f6215f9bc4c9740b49f26f78ddef2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingData:
-    textAsset: {fileID: 4900000, guid: fd865d8ffd14b9b4590c7ecac89e1f2f, type: 3}
-  typingManager: {fileID: 1281543586}
-  count_knock: 521
-  count_bike: 150
 --- !u!4 &610859836
 Transform:
   m_ObjectHideFlags: 0
@@ -2587,10 +2582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684c746f4eae05d45a6e093d71a1e289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typingObj: {fileID: 1134903510}
-  qText: {fileID: 1812907862}
-  aText: {fileID: 2143235041}
-  textPanelRect: {fileID: 1134903511}
 --- !u!4 &1281543587
 Transform:
   m_ObjectHideFlags: 0
@@ -4325,8 +4316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662c8c188945629438759f89e13b73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seConfig: {fileID: 11400000, guid: 75d00df3873219946b29a0127515e4f8, type: 2}
-  audioSource: {fileID: 1941490419}
+  _keyboardSE: {fileID: 0}
 --- !u!4 &1941490421
 Transform:
   m_ObjectHideFlags: 0

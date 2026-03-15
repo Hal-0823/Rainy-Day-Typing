@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using System;
 
 public class TypingSceneDirector : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class TypingSceneDirector : MonoBehaviour
         var quests = await questLoader.LoadQuestDataAsync(_questDataPath);
 
         var model = new TypingModel(quests);
-        var presenter = new TypingPresenter(model, _typingView);
+        var presenter = new TypingPresenter(model, _typingView, _audioManager);
 
         var musicModel = new MusicModel(_musicDataList);
         var musicPresenter = new MusicPresenter(musicModel, _musicView);

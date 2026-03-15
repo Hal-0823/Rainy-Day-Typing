@@ -1,15 +1,20 @@
 using R3;
 using Cysharp.Threading.Tasks;
+using System;
 
-public class TypingPresenter
+public class TypingPresenter : IDisposable
 {
     private readonly TypingModel _model;
     private readonly TypingView _view;
+    private readonly AudioManager _audioManager;
 
-    public TypingPresenter(TypingModel model, TypingView view)
+    private readonly CompositeDisposable _disposables = new();
+
+    public TypingPresenter(TypingModel model, TypingView view, AudioManager audioManager)
     {
         _model = model;
         _view = view;
+        _audioManager = audioManager;
         _model.NextWord();
         Bind();
     }
@@ -18,14 +23,22 @@ public class TypingPresenter
     {
         _model.CurrentState
             .Subscribe(state => _view.SetTypingText(state))
-            .AddTo(_view);
+            .AddTo(_disposables);
         
         _model.OnWordCompleted
             .Subscribe(_ => _model.NextWord())
-            .AddTo(_view);
+            .AddTo(_disposables);
 
         _view.OnInputChar
-            .Subscribe(c => _model.HandleInput(c))
-            .AddTo(_view);
+            .Subscribe(c => {
+                _model.HandleInput(c);
+                _audioManager.KeyboardAudioController.PlayRandomKeySE();
+            })
+            .AddTo(_disposables);
+    }
+
+    public void Dispose()
+    {
+        _disposables.Dispose();
     }
 }
