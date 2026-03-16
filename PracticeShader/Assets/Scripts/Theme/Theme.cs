@@ -9,4 +9,6 @@ public class Theme : ScriptableObject
     public Color NotificationPanelColor;
     public Color TextColor;
     public Color AccentColor;
+    
+    public KeyboardSE.Type KeyboardSE;
 }

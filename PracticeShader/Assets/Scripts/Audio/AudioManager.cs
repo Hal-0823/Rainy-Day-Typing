@@ -3,15 +3,35 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private KeyboardSE _keyboardSE;
 
-    [SerializeField] private KeyboardAudioController _keyboardAudioController;
-    public KeyboardAudioController KeyboardAudioController => _keyboardAudioController;
+    public MusicAudioController MusicAudioController { get; private set; }
+    public KeyboardAudioController KeyboardAudioController { get; private set; }
+    public RainAudioController RainAudioController { get; private set; }
+    public SystemAudioController SystemAudioController { get; private set; }
 
-    public void SetBGMVolume(int volume)
+    private void Awake()
     {
-        SetVolume("BGMVolume", volume);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        MusicAudioController = GetComponentInChildren<MusicAudioController>();
+        KeyboardAudioController = GetComponentInChildren<KeyboardAudioController>();
+        RainAudioController = GetComponentInChildren<RainAudioController>();
+        SystemAudioController = GetComponentInChildren<SystemAudioController>();
+    }
+
+    public void SetMusicVolume(int volume)
+    {
+        SetVolume("MusicVolume", volume);
     }
 
     public void SetKeyboardVolume(int volume)

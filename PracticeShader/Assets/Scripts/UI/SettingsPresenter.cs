@@ -12,11 +12,10 @@ public class SettingsPresenter : IDisposable
 
     private readonly CompositeDisposable _disposables = new();
 
-    public SettingsPresenter(SettingsModel model, SettingsView view, AudioManager audioManager, RenderVolumeController renderVolumeController, ThemeController themeController)
+    public SettingsPresenter(SettingsModel model, SettingsView view, RenderVolumeController renderVolumeController, ThemeController themeController)
     {
         _model = model;
         _view = view;
-        _audioManager = audioManager;
         _renderVolumeController = renderVolumeController;
         _themeController = themeController;
         AudioBind();
@@ -26,11 +25,11 @@ public class SettingsPresenter : IDisposable
 
     private void AudioBind()
     {
-        _model.BGMVolume
+        _model.MusicVolume
             .Subscribe(volume =>
             {
-                _view.SetBGMVolume(volume);
-                _audioManager.SetBGMVolume(volume);
+                _view.SetMusicVolume(volume);
+                AudioManager.Instance.SetMusicVolume(volume);
             })
             .AddTo(_disposables);
 
@@ -38,7 +37,7 @@ public class SettingsPresenter : IDisposable
             .Subscribe(volume =>
             {
                 _view.SetRainVolume(volume);
-                _audioManager.SetRainVolume(volume);
+                AudioManager.Instance.SetRainVolume(volume);
             })
             .AddTo(_disposables);
 
@@ -47,16 +46,16 @@ public class SettingsPresenter : IDisposable
             {
                 // メニューが開いているときの音量変更は音を鳴らす
                 _view.SetKeyboardVolume(volume, playSE: _model.IsMenuOpen.Value);
-                _audioManager.SetKeyboardVolume(volume);
+                AudioManager.Instance.SetKeyboardVolume(volume);
             })
             .AddTo(_disposables);
 
         _model.SelectedKeyboardType
-            .Subscribe(type => _audioManager.SetKeyboardSEType(type))
+            .Subscribe(type => AudioManager.Instance.SetKeyboardSEType(type))
             .AddTo(_disposables);
         
-        _view.OnBGMVolumeChanged
-            .Subscribe(volume => _model.BGMVolume.Value = volume)
+        _view.OnMusicVolumeChanged
+            .Subscribe(volume => _model.MusicVolume.Value = volume)
             .AddTo(_disposables);
         
         _view.OnRainVolumeChanged
@@ -92,11 +91,17 @@ public class SettingsPresenter : IDisposable
             .AddTo(_disposables);
         
         _view.OnPressedLeftShiftThemeButton
-            .Subscribe(_ => _model.RequestShiftTheme(-1))
+            .Subscribe(_ => {
+                _model.RequestShiftTheme(-1);
+                AudioManager.Instance.SystemAudioController.PlayButtonClickSE();
+            })
             .AddTo(_disposables);
         
         _view.OnPressedRightShiftThemeButton
-            .Subscribe(_ => _model.RequestShiftTheme(1))
+            .Subscribe(_ => {
+                _model.RequestShiftTheme(1);
+                AudioManager.Instance.SystemAudioController.PlayButtonClickSE();
+            })
             .AddTo(_disposables);
     }
 

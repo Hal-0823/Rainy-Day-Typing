@@ -20,6 +20,8 @@ public class ThemeController : MonoBehaviour
         {
             target.ApplyThemeColor(theme);
         }
+
+        AudioManager.Instance.SetKeyboardSEType(theme.KeyboardSE);
     }
 
 }

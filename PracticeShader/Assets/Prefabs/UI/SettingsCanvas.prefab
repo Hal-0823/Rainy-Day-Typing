@@ -198,8 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43768b12425a51440ad7e461e1a55b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
-  _bgmVolumeSlider: {fileID: 2661929657767020344}
+  _musicVolumeSlider: {fileID: 2661929657767020344}
   _rainVolumeSlider: {fileID: 6568839192199159077}
   _keyboardVolumeSlider: {fileID: 8835589603764504162}
   _shiftContextWrapper: {fileID: 7472082821266517964}
@@ -1288,7 +1287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4669813297116771525, guid: c63c3205877dec54a8a571798df112c6, type: 3}
       propertyPath: m_Name
-      value: '[VolSlider]BGM'
+      value: '[VolSlider]Music'
       objectReference: {fileID: 0}
     - target: {fileID: 5027773345406265173, guid: c63c3205877dec54a8a571798df112c6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1308,7 +1307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9004871411234742841, guid: c63c3205877dec54a8a571798df112c6, type: 3}
       propertyPath: m_text
-      value: BGM
+      value: "\u97F3\u697D"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

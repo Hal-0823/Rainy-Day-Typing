@@ -8,7 +8,7 @@ public class SettingsModel
 
     public ReactiveProperty<int> RainVolume { get; } = new();
     public ReactiveProperty<int> KeyboardVolume { get; } = new();
-    public ReactiveProperty<int> BGMVolume { get; } = new();
+    public ReactiveProperty<int> MusicVolume { get; } = new();
     public ReactiveProperty<KeyboardSE.Type> SelectedKeyboardType { get; } = new();
     public ReactiveProperty<ThemeCatalog.Type> SelectedTheme { get; } = new();
 
@@ -25,7 +25,7 @@ public class SettingsModel
         {
             RainVolume = RainVolume.Value,
             KeyboardVolume = KeyboardVolume.Value,
-            BGMVolume = BGMVolume.Value,
+            MusicVolume = MusicVolume.Value,
             SelectedKeyboardType = SelectedKeyboardType.Value,
             SelectedTheme = SelectedTheme.Value
         };
@@ -56,7 +56,7 @@ public class SettingsModel
 
         RainVolume.Value = config.RainVolume;
         KeyboardVolume.Value = config.KeyboardVolume;
-        BGMVolume.Value = config.BGMVolume;
+        MusicVolume.Value = config.MusicVolume;
         SelectedKeyboardType.Value = config.SelectedKeyboardType;
         SelectedTheme.Value = config.SelectedTheme;
     }

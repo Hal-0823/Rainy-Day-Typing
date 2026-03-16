@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using System;
 
-public class TypingSceneDirector : MonoBehaviour
+public class TypingSceneDirector : MonoBehaviour, ISceneDirector
 {
     [SerializeField] private TypingView _typingView;
     [SerializeField] private string _questDataPath = "Rain";
@@ -12,22 +12,35 @@ public class TypingSceneDirector : MonoBehaviour
     [SerializeField] private List<MusicData> _musicDataList;
 
     [SerializeField] private SettingsView _settingsView;
-    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private RenderVolumeController _renderVolumeController;
     [SerializeField] private ThemeController _themeController;
 
-    private async void Start()
+    private TypingPresenter _typingPresenter;
+    private MusicPresenter _musicPresenter;
+    private SettingsPresenter _settingsPresenter;
+
+    public async UniTask OnLoadScene()
     {
         var questLoader = new QuestLoader();
         var quests = await questLoader.LoadQuestDataAsync(_questDataPath);
 
         var model = new TypingModel(quests);
-        var presenter = new TypingPresenter(model, _typingView, _audioManager);
+        _typingPresenter = new TypingPresenter(model, _typingView);
 
         var musicModel = new MusicModel(_musicDataList);
-        var musicPresenter = new MusicPresenter(musicModel, _musicView);
+        _musicPresenter = new MusicPresenter(musicModel, _musicView);
 
         var settingsModel = new SettingsModel();
-        var settingsPresenter = new SettingsPresenter(settingsModel, _settingsView, _audioManager, _renderVolumeController, _themeController);
+        _settingsPresenter = new SettingsPresenter(settingsModel, _settingsView, _renderVolumeController, _themeController);
+
+        AudioManager.Instance.RainAudioController.PlayRainSound();
+    }
+
+    public async UniTask OnUnloadScene()
+    {
+        _typingPresenter?.Dispose();
+        _musicPresenter?.Dispose();
+        _settingsPresenter?.Dispose();
+        await UniTask.Yield();
     }
 }

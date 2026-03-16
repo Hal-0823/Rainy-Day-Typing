@@ -6,15 +6,13 @@ public class TypingPresenter : IDisposable
 {
     private readonly TypingModel _model;
     private readonly TypingView _view;
-    private readonly AudioManager _audioManager;
 
     private readonly CompositeDisposable _disposables = new();
 
-    public TypingPresenter(TypingModel model, TypingView view, AudioManager audioManager)
+    public TypingPresenter(TypingModel model, TypingView view)
     {
         _model = model;
         _view = view;
-        _audioManager = audioManager;
         _model.NextWord();
         Bind();
     }
@@ -32,7 +30,7 @@ public class TypingPresenter : IDisposable
         _view.OnInputChar
             .Subscribe(c => {
                 _model.HandleInput(c);
-                _audioManager.KeyboardAudioController.PlayRandomKeySE();
+                AudioManager.Instance.KeyboardAudioController.PlayRandomKeySE();
             })
             .AddTo(_disposables);
     }

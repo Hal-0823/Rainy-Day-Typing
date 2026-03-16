@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7207688655423088280
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: cb3e01a75b87a41408f9eb2350af90f5
+  m_EffectName: Attenuation
+  m_MixLevel: 02a806e53759cdb40a8a1575812a41cd
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-6477125120282244891
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 4514f710b3605d84b880796c65679f82
+  m_Children: []
+  m_Volume: ed76337ae5e8742419ea9f7eed9d5267
+  m_Pitch: fd353fbb1ec882b459f079793bbfa91c
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7207688655423088280}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-6418989633600713970
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -88,6 +121,8 @@ AudioMixerController:
     name: BGMVolume
   - guid: aab4b51c6b234fb43875fd7b04eea1b2
     name: KeyboardVolume
+  - guid: ed76337ae5e8742419ea9f7eed9d5267
+    name: MusicVolume
   - guid: 52da316010b506f4fa71a8a8462c3ee9
     name: RainVolume
   - guid: 19122dfff901bc349baf59529e32b2a0
@@ -99,6 +134,7 @@ AudioMixerController:
     - 3803709d0ff62354e82152b31b1175ac
     - 2337688c7ecfb6b4da21681c82a7cf5a
     - 69017cab6babedd47a932ca58b7ce80a
+    - 4514f710b3605d84b880796c65679f82
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -190,7 +226,8 @@ AudioMixerGroupController:
   m_Name: BGM
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 1783d0f73af9dd446bc91b1e96eabfb0
-  m_Children: []
+  m_Children:
+  - {fileID: -6477125120282244891}
   m_Volume: 6571395d1dfd95c4f8ae0647c741508f
   m_Pitch: a443181e422d6c24882f78975473d920
   m_Send: 00000000000000000000000000000000

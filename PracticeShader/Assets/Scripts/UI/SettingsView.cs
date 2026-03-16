@@ -5,26 +5,24 @@ using UnityEngine.InputSystem;
 
 public class SettingsView : MonoBehaviour
 {
-    [SerializeField] private AudioManager _audioManager;
-
-    [SerializeField] private VolumeSliderWrapper _bgmVolumeSlider;
+    [SerializeField] private VolumeSliderWrapper _musicVolumeSlider;
     [SerializeField] private VolumeSliderWrapper _rainVolumeSlider;
     [SerializeField] private VolumeSliderWrapper _keyboardVolumeSlider;
 
     [SerializeField] private ShiftContextWrapper _shiftContextWrapper;
 
-    public Observable<int> OnBGMVolumeChanged => _bgmVolumeSlider.OnVolumeChanged;
+    public Observable<int> OnMusicVolumeChanged => _musicVolumeSlider.OnVolumeChanged;
     public Observable<int> OnRainVolumeChanged => _rainVolumeSlider.OnVolumeChanged;
     public Observable<int> OnKeyboardVolumeChanged => _keyboardVolumeSlider.OnVolumeChanged;
 
-    public void SetBGMVolume(int volume) => _bgmVolumeSlider.SetSliderValue(volume);
+    public void SetMusicVolume(int volume) => _musicVolumeSlider.SetSliderValue(volume);
     public void SetRainVolume(int volume) => _rainVolumeSlider.SetSliderValue(volume);
     public void SetKeyboardVolume(int volume, bool playSE = true)
     {
         _keyboardVolumeSlider.SetSliderValue(volume);
         if (playSE)
         {
-            _audioManager.KeyboardAudioController.PlayRandomKeySE();
+            AudioManager.Instance.KeyboardAudioController.PlayRandomKeySE();
         }
     }
 
