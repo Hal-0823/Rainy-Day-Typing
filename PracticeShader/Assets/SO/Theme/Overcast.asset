@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1587df96d5a543f4fa5c3d09ec754ca8, type: 3}
   m_Name: Overcast
   m_EditorClassIdentifier: 
-  Skybox: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
-  TypingPanelColor: {r: 0.03529412, g: 0.03529412, b: 0.03529412, a: 1}
-  NotificationPanelColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0.9607843}
+  Skybox: {fileID: 2100000, guid: e3bdf9080aad5ea41a49a302f027bf9e, type: 2}
+  TypingPanelColor: {r: 0.33486116, g: 0.35256097, b: 0.4056604, a: 1}
+  NotificationPanelColor: {r: 0.28484336, g: 0.30319002, b: 0.3490566, a: 0.9607843}
   TextColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
   AccentColor: {r: 0.122152, g: 0.20696485, b: 0.4245283, a: 1}
-  KeyboardSE: 1
+  KeyboardSE: 2

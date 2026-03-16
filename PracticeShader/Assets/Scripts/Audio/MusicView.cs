@@ -32,13 +32,9 @@ public class MusicView : MonoBehaviour
     /// <param name="musicClip"></param>
     /// <param name="fadeDuration"></param>
     /// <returns></returns>
-    public async UniTask PlayWithFade(AudioClip musicClip, float fadeDuration)
+    public async UniTask PlayWithFade(AudioClip musicClip, float fadeDuration, CancellationToken token)
     {
-        _playMusicCts?.Cancel();
-        _playMusicCts?.Dispose();
-
         _playMusicCts = new CancellationTokenSource();
-        var token = _playMusicCts.Token;
 
         // 曲再生遅延
         await UniTask.Delay(TimeSpan.FromSeconds(3), cancellationToken: token);
@@ -50,7 +46,7 @@ public class MusicView : MonoBehaviour
     private async UniTaskVoid WaitUntilMusicEnd(CancellationToken token)
     {
         await AudioManager.Instance.MusicAudioController.WaitUntilMusicEnd(token);
-        if (!token.IsCancellationRequested)
+        if (!token.IsCancellationRequested && !_onMusicEndSubject.IsDisposed)
         {
             _onMusicEndSubject.OnNext(Unit.Default);
         }
@@ -97,7 +93,5 @@ public class MusicView : MonoBehaviour
         _onMusicEndSubject.Dispose();
         _notificationCts?.Cancel();
         _notificationCts?.Dispose();
-        _playMusicCts?.Cancel();
-        _playMusicCts?.Dispose();
     }
 }
