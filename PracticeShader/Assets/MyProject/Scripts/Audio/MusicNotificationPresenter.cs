@@ -25,8 +25,8 @@ public class MusicNotificationPresenter : IDisposable
             .Subscribe(async data => _view.StandbyNotification(data.Title, data.Composer))
             .AddTo(_disposables);
 
-        _model.IsPaused
-            .Where(isPaused => !isPaused) // 再生開始時に通知を表示
+        _model.IsPlaying
+            .Where(isPlaying => isPlaying) // 再生開始時に通知を表示
             .Subscribe(_ => _view.ShowNotification(delay: 1f, fadeDuration: 1f, displayDuration: 3f).Forget())
             .AddTo(_disposables);
     }

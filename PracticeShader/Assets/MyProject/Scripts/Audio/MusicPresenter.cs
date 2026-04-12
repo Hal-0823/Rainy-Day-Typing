@@ -62,7 +62,12 @@ public class MusicPresenter : IDisposable
             .AddTo(_disposables);
 
         _view.OnMusicEnd
-            .Subscribe(_ => _model.RequestNextMusic())
+            .Subscribe(_ => 
+            {
+                _model.SetPlayState(false); // 再生終了時に再生状態を更新
+                _model.RequestNextMusic();
+                _model.SetPlayState(true); // 次の曲を再生
+            })
             .AddTo(_disposables);
     }
 

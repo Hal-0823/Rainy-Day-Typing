@@ -23,7 +23,6 @@ public class MusicNotificationView : MonoBehaviour
 
     public void StandbyNotification(string musicTitle, string composer)
     {
-
         _musicNotificationCanvasGroup.DOKill();
         _musicNotificationCanvasGroup.alpha = 0;
         _musicTitleText.text = musicTitle;

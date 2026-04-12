@@ -43,9 +43,18 @@ public class TypingSceneDirector : MonoBehaviour, ISceneDirector
         _settingsPresenter = new SettingsPresenter(settingsModel, _settingsView, _renderVolumeController, _themeController);
 
         AudioManager.Instance.RainAudioController.PlayRainSound();
+        StartMusicWithDelay(musicModel, 1.8f).Forget();
+    }
 
+    private async UniTask StartMusicWithDelay(MusicModel musicModel, float delaySeconds)
+    {
         musicModel.RequestNextMusic(); // 最初の曲をセット
 
+        await UniTask.WaitForSeconds(delaySeconds);
+
+        musicModel.SetPlayState(true); // 最初の曲を再生状態にする
+        musicModel.SetPauseState(false); // 最初の曲をunpause状態にする
+        
     }
 
     public async UniTask OnUnloadScene()
